@@ -1,0 +1,16 @@
+[
+  {
+    "name": "web",
+    "image": "",
+    "cpu": 1024,
+    "memory": 128,
+    "essential": true,
+    "command": ["tail","-f","/dev/null"],
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ]
+  }
+]
