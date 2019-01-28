@@ -55,6 +55,9 @@ security_ips               = "" - Set permit ip address.
 * Run terraform commands.
 
 ```
+export TF_VAR_auth='{access_key = "YOUR_ACCESS_KEY_ID", secret_key = "YOUR_SECRET_KEY_ID"}'
+export TF_VAR_ecs='{key_name = "SSHE_KEY_NAME"}'
+
 terraform plan
 terraform apply
 ```

@@ -1,6 +1,4 @@
-# Terraform v0.11.7
-
-## Crate Alicloud Resources
+# Terraform v0.11.7 ## Crate Alicloud Resources 
 
 * Set up resources.
   * VPC
@@ -44,6 +42,9 @@ internet_max_bandwidth_out = "" - Set network bandwidth.
 * Run terraform commands.
 
 ```
+export TF_VAR_auth='{access_key = "YOUR_ACCESS_KEY_ID", secret_key = "YOUR_SECRET_KEY_ID"}'
+export TF_VAR_ecs='{key_name = "SSHE_KEY_NAME"}'
+
 terraform plan
-terraform apply
+terraform apply 
 ```
