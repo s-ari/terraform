@@ -19,6 +19,25 @@ resource "alicloud_vswitch" "vswitch_zone_a" {
   name              = "${var.prefix}${lookup(var.vswitch_zone_a, "name")}"
 }
 
+# Create Cloud Disk
+resource "alicloud_disk" "ecs_disk" {
+  # cn-beijing
+  availability_zone = "ap-northeast-1a"
+  name              = "${var.prefix}-disk"
+  description       = "${var.prefix}-disk"
+  category          = "cloud_ssd"
+  size              = "30"
+
+  tags {
+    Name = "${var.prefix}-disk"
+  }
+}
+
+resource "alicloud_disk_attachment" "ecs_disk_att" {
+  disk_id     = "${alicloud_disk.ecs_disk.id}"
+  instance_id = "${alicloud_instance.ecs.id}"
+}
+
 # Create ECS
 resource "alicloud_instance" "ecs" {
   count                      = "${lookup(var.ecs, "count")}"
