@@ -39,7 +39,7 @@ variable "ecs" {
     count            = "1"
     #image_id         = "ubuntu_16_0402_64_20G_alibase_20180409.vhd"
     image_id         = "centos_6_09_64_20G_alibase_20180326.vhd"
-    instance_type    = "ecs.sn2.large"
+    instance_type    = "ecs.t5-c1m1.large"
     system_disk_size = "40"
 
     # Set your ssh key
