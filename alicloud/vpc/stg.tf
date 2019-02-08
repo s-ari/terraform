@@ -32,28 +32,3 @@ variable "vswitch_zone_a" {
   }
 }
 
-variable "ecs" {
-  type = "map"
-
-  default = {
-    count            = "1"
-    image_id         = "ubuntu_16_0402_64_20G_alibase_20180409.vhd"
-    instance_type    = "ecs.t5-c1m1.large"
-    system_disk_size = "40"
-
-    # Set your ssh key
-    key_name                   = ""
-    instance_name              = "ecs"
-    internet_max_bandwidth_out = "100"
-  }
-}
-
-variable "sg" {
-  type = "map"
-
-  default = {
-    name        = "sg"
-    description = "This security group is for staging."
-  }
-}
-
