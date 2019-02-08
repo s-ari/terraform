@@ -7,7 +7,7 @@ provider "alicloud" {
 
 # Create VPC Network
 resource "alicloud_vpc" "vpc" {
-  name       = "${var.prefix}${lookup(var.vpc, "name")}"
+  name       = "${var.prefix}-${lookup(var.vpc, "name")}"
   cidr_block = "${lookup(var.vpc, "cidr_block")}"
 }
 
@@ -16,7 +16,7 @@ resource "alicloud_vswitch" "vswitch_zone_a" {
   vpc_id            = "${alicloud_vpc.vpc.id}"
   cidr_block        = "${lookup(var.vswitch_zone_a, "cidr_block")}"
   availability_zone = "${lookup(var.vswitch_zone_a, "availability_zone")}"
-  name              = "${var.prefix}${lookup(var.vswitch_zone_a, "name")}"
+  name              = "${var.prefix}-${lookup(var.vswitch_zone_a, "name")}"
 }
 
 # Create ECS
@@ -34,7 +34,7 @@ resource "alicloud_instance" "ecs" {
 
 # Create Security group
 resource "alicloud_security_group" "sg" {
-  name        = "${lookup(var.sg, "name")}"
+  name        = "${var.prefix}-${lookup(var.sg, "name")}"
   description = "${lookup(var.sg, "description")}"
   vpc_id      = "${alicloud_vpc.vpc.id}"
 }
@@ -63,7 +63,7 @@ resource "alicloud_security_group_rule" "sg_http" {
 
 # Create SLB for classic
 resource "alicloud_slb" "classic" {
-  name                 = "${lookup(var.slb, "name")}"
+  name                 = "${var.prefix}-${lookup(var.slb, "name")}"
   internet             = true
   internet_charge_type = "paybytraffic"
   bandwidth            = 5

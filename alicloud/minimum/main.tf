@@ -16,7 +16,7 @@ resource "alicloud_vswitch" "vswitch_zone_a" {
   vpc_id            = "${alicloud_vpc.vpc.id}"
   cidr_block        = "${lookup(var.vswitch_zone_a, "cidr_block")}"
   availability_zone = "${lookup(var.vswitch_zone_a, "availability_zone")}"
-  name              = "${var.prefix}${lookup(var.vswitch_zone_a, "name")}"
+  name              = "${var.prefix}-${lookup(var.vswitch_zone_a, "name")}"
 }
 
 # Create Cloud Disk
@@ -45,7 +45,7 @@ resource "alicloud_instance" "ecs" {
   instance_type              = "${lookup(var.ecs, "instance_type")}"
   system_disk_size           = "${lookup(var.ecs, "system_disk_size")}"
   security_groups            = ["${alicloud_security_group.sg.id}"]
-  instance_name              = "${var.prefix}${lookup(var.ecs, "instance_name")}${format(count.index + 1)}"
+  instance_name              = "${var.prefix}-${lookup(var.ecs, "instance_name")}${format(count.index + 1)}"
   vswitch_id                 = "${alicloud_vswitch.vswitch_zone_a.id}"
   key_name                   = "${lookup(var.ecs, "key_name")}"
   internet_max_bandwidth_out = "${lookup(var.ecs, "internet_max_bandwidth_out")}"

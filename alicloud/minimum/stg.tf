@@ -1,5 +1,5 @@
 variable "prefix" {
-  default = "stg-"
+  default = ""
 }
 
 variable "auth" {
@@ -37,8 +37,7 @@ variable "ecs" {
 
   default = {
     count            = "1"
-    #image_id         = "ubuntu_16_0402_64_20G_alibase_20180409.vhd"
-    image_id         = "centos_6_09_64_20G_alibase_20180326.vhd"
+    image_id         = "ubuntu_16_0402_64_20G_alibase_20180409.vhd"
     instance_type    = "ecs.t5-c1m1.large"
     system_disk_size = "40"
 
