@@ -51,7 +51,7 @@ variable "k8s" {
     worker_number        = "1"
     worker_disk_category = "cloud_ssd"
     worker_disk_size     = "40"
-    key_name            = "arimas66_id_rsa"
+    key_name            = ""
     pod_cidr             = "172.16.0.0/16"
     service_cidr         = "172.19.0.0/20"
   }
