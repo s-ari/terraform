@@ -1,9 +1,28 @@
-# Use all auth settings 
+# Setup authentications
 
-* Export access key, secret key, ssh key name and prefix 
+## Export environment variables
+
+### Authentications not have to wirte in tffiles.
+
+* Access key
+* Secret key
+* Prefixs
+* SSH key file name
 
 ```
-export TF_VAR_auth='{access_key = "YOUR_ACCESS_KEY_ID", secret_key = "YOUR_SECRET_KEY_ID"}'
-export TF_VAR_ecs='{key_name = "SSHE_KEY_NAME"}'
-export TF_VAR_prefix='PREFIX'
+export TF_VAR_access_key=""
+export TF_VAR_secret_key=""
+export TF_VAR_region=""
+export TF_VAR_ssh_key=""
+export TF_VAR_prefix=""
+```
+
+# Run terraform commands
+
+* Change environment commands using workspace
+
+```
+terraform workspace new <Environment>
+terraform workspace list
+terraform workspace select <Environment>
 ```
