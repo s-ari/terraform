@@ -12,8 +12,8 @@ provider "alicloud" {
 }
 
 module "vpc" {
-  source = "../modules/vpc"
-  prefix = "${var.prefix}"
+  source      = "../modules/vpc"
+  prefix      = "${var.prefix}"
   name        = "${var.prefix}_${terraform.workspace}_vpc"
   description = "${var.prefix} vpc"
   cidr_block  = "192.168.0.0/16"
