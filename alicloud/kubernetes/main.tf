@@ -19,30 +19,20 @@ module "vpc" {
   cidr_block  = "192.168.0.0/16"
 }
 
-module "vswitch" {
-  source = "../modules/vswitch"
+module "vswitch_az_a" {
+  source = "../modules/vswitch_az_a"
   vpc_id = "${module.vpc.vpc_id}"
   prefix = "${var.prefix}"
-
   vswitch_a_cidr_block        = "192.168.1.0/24"
   vswitch_a_name              = "${var.prefix}_${terraform.workspace}_vswitch_az_a"
   vswitch_a_description       = "${var.prefix} vswitch_az_a"
   vswitch_availability_zone_a = "ap-northeast-1a"
-
-#  vswitch_b_cidr_block        = "192.168.2.0/24"
-#  vswitch_b_name              = "${var.prefix}_${terraform.workspace}_vswitch_az_b"
-#  vswitch_b_description       = "${var.prefix} vswitch_az_b"
-#  vswitch_availability_zone_b = "ap-northeast-1b"
-
-#  vswitch_b_cidr_block  = "192.168.3.0/24"
-##  vswitch_b_name        = "${var.prefix}_${terraform.workspace}_vswitch_az_b2"
-#  vswitch_b_description = "${var.prefix} vswitch_az_b2"
 }
 
 module "kubernetes" {
   source                    = "../modules/kubernetes"
   name                      = "${var.prefix}-${terraform.workspace}-kubernetes"
-  vswitch_ids               = "${module.vswitch.vswitch_zone_a_id}"
+  vswitch_ids               = "${module.vswitch_az_a.vswitch_zone_a_id}"
   new_nat_gateway           = "true"
   master_instance_types     = "ecs.t5-lc1m2.large"
   worker_instance_types     = "ecs.t5-c1m4.xlarge"
