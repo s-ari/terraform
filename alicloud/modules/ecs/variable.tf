@@ -22,6 +22,10 @@ variable "instance_type" {
   default = ""
 }
 
+variable "system_disk_category" {
+  default = ""
+}
+
 variable "system_disk_size" {
   default = ""
 }
