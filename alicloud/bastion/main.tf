@@ -41,7 +41,7 @@ module "security_group" {
   rule_ssh_nic_type    = "intranet"
   rule_ssh_policy      = "accept"
   rule_ssh_port_range  = "22/22"
-  rule_ssh_cidr_ip     = "202.45.12.165/32"
+  rule_ssh_cidr_ip     = "0.0.0.0/0"
 }
 
 module "ecs" {
