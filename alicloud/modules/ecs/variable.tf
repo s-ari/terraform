@@ -22,6 +22,10 @@ variable "instance_type" {
   default = ""
 }
 
+variable "system_disk_category" {
+  default = ""
+}
+
 variable "system_disk_size" {
   default = ""
 }
@@ -35,6 +39,10 @@ variable "host_name" {
 }
 
 variable "key_name" {
+  default = ""
+}
+
+variable "internet_max_bandwidth_in" {
   default = ""
 }
 
