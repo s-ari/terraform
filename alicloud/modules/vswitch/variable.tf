@@ -6,18 +6,18 @@ variable "vpc_id" {
   default = ""
 }
 
-variable "vswitch_a_name" {
+variable "vswitch_name" {
   default = ""
 }
 
-variable "vswitch_a_description" {
+variable "vswitch_description" {
   default = ""
 }
 
-variable "vswitch_availability_zone_a" {
+variable "vswitch_availability_zone" {
   default = ""
 }
 
-variable "vswitch_a_cidr_block" {
+variable "vswitch_cidr_block" {
   default = ""
 }
