@@ -24,7 +24,7 @@
 module "ecs" {
   source                     = "../modules/ecs"
   description                = "${var.prefix} ecs"
-  vswitch_id                 = "${module.vswitch.vswitch_zone_a_id}"
+  vswitch_id                 = "${module.vswitch.vswitch_id}"
   security_groups            = "${module.security_group.security_group_id}"
   count                      = "2"
   image_id                   = "ubuntu_16_0402_64_20G_alibase_20180409.vhd"

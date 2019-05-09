@@ -20,25 +20,25 @@ module "vpc" {
 }
 
 module "vswitch_az_a" {
-  source = "../modules/vswitch_az_a"
+  source = "../modules/vswitch"
   vpc_id = "${module.vpc.vpc_id}"
   prefix = "${var.prefix}"
 
-  vswitch_a_cidr_block        = "192.168.1.0/24"
-  vswitch_a_name              = "${var.prefix}_${terraform.workspace}_vswitch_az_a"
-  vswitch_a_description       = "${var.prefix} vswitch_az_a"
-  vswitch_availability_zone_a = "ap-northeast-1a"
+  vswitch_cidr_block        = "192.168.1.0/24"
+  vswitch_name              = "${var.prefix}_${terraform.workspace}_vswitch_az_a"
+  vswitch_description       = "${var.prefix} vswitch_az_a"
+  vswitch_availability_zone = "ap-northeast-1a"
 }
 
 module "vswitch_az_b" {
-  source = "../modules/vswitch_az_b"
+  source = "../modules/vswitch"
   vpc_id = "${module.vpc.vpc_id}"
   prefix = "${var.prefix}"
 
-  vswitch_b_cidr_block        = "192.168.2.0/24"
-  vswitch_b_name              = "${var.prefix}_${terraform.workspace}_vswitch_az_b"
-  vswitch_b_description       = "${var.prefix} vswitch_az_b"
-  vswitch_availability_zone_b = "ap-northeast-1b"
+  vswitch_cidr_block        = "192.168.2.0/24"
+  vswitch_name              = "${var.prefix}_${terraform.workspace}_vswitch_az_b"
+  vswitch_description       = "${var.prefix} vswitch_az_b"
+  vswitch_availability_zone = "ap-northeast-1b"
 }
 
 module "security_group" {
@@ -58,10 +58,10 @@ module "security_group" {
 module "ecs" {
   source                     = "../modules/ecs"
   description                = "${var.prefix} ecs"
-  vswitch_id                 = "${module.vswitch_az_a.vswitch_zone_a_id}"
+  vswitch_id                 = "${module.vswitch_az_a.vswitch_id}"
   security_groups            = "${module.security_group.security_group_id}"
   count                      = "2"
-  image_id                   = "ubuntu_16_0402_64_20G_alibase_20180409.vhd"
+  image_id                   = "ubuntu_18_04_64_20G_alibase_20190223.vhd"
   instance_type              = "ecs.t5-lc2m1.nano"
   system_disk_size           = "40"
   instance_name              = "${var.prefix}_${terraform.workspace}_ecs"
