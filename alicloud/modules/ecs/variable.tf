@@ -42,10 +42,6 @@ variable "key_name" {
   default = ""
 }
 
-variable "internet_max_bandwidth_in" {
-  default = ""
-}
-
 variable "internet_max_bandwidth_out" {
   default = ""
 }

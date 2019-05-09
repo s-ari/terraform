@@ -61,7 +61,7 @@ module "ecs" {
   vswitch_id                 = "${module.vswitch_az_a.vswitch_zone_a_id}"
   security_groups            = "${module.security_group.security_group_id}"
   count                      = "2"
-  image_id                   = "ubuntu_16_0402_64_20G_alibase_20180409.vhd"
+  image_id                   = "ubuntu_18_04_64_20G_alibase_20190223.vhd"
   instance_type              = "ecs.t5-lc2m1.nano"
   system_disk_size           = "40"
   instance_name              = "${var.prefix}_${terraform.workspace}_ecs"

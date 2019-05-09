@@ -10,6 +10,5 @@ resource "alicloud_instance" "ecs" {
   security_groups            = ["${var.security_groups}"]
   vswitch_id                 = "${var.vswitch_id}"
   key_name                   = "${var.key_name}"
-  internet_max_bandwidth_in  = "${var.internet_max_bandwidth_in}"
   internet_max_bandwidth_out = "${var.internet_max_bandwidth_out}"
 }
