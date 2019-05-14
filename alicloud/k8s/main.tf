@@ -35,7 +35,7 @@ module "kubernetes" {
   vswitch_ids               = "${module.vswitch_az_a.vswitch_id}"
   new_nat_gateway           = "true"
   master_instance_types     = "ecs.t5-lc1m2.large"
-  worker_instance_types     = "ecs.t5-c1m4.xlarge"
+  worker_instance_types     = "ecs.t5-lc1m4.large"
   worker_numbers            = "2"
   master_disk_category      = "cloud_efficiency"
   master_disk_size          = "40"
