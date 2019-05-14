@@ -41,7 +41,7 @@ module "security_group" {
   rule_ssh_nic_type    = "intranet"
   rule_ssh_policy      = "accept"
   rule_ssh_port_range  = "22/22"
-  rule_ssh_cidr_ip     = "202.45.12.165/32"
+  rule_ssh_cidr_ip     = "0.0.0.0/0"
 }
 
 module "ecs" {
@@ -51,7 +51,7 @@ module "ecs" {
   security_groups            = "${module.security_group.security_group_id}"
   count                      = "1"
   image_id                   = "ubuntu_18_04_64_20G_alibase_20181212.vhd"
-  instance_type              = "ecs.t5-lc1m4.large"
+  instance_type              = "ecs.t5-c1m1.large"
   system_disk_category       = "cloud_efficiency"
   system_disk_size           = "50"
   instance_name              = "${var.prefix}_${terraform.workspace}"
