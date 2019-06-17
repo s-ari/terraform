@@ -27,18 +27,7 @@ module "vswitch_az_a" {
   vswitch_cidr_block      = "192.168.1.0/24"
   vswitch_name            = "${var.prefix}_${terraform.workspace}_vswitch_az_a"
   vswitch_description     = "${var.prefix} vswitch_az_a"
-  vswitch_availability_zone = "ap-northeast-1a"
-}
-
-module "vswitch_az_a2" {
-  source = "../modules/vswitch"
-  vpc_id = "${module.vpc.vpc_id}"
-  prefix = "${var.prefix}"
-
-  vswitch_cidr_block      = "192.168.3.0/24"
-  vswitch_name            = "${var.prefix}_${terraform.workspace}_vswitch_az_a2"
-  vswitch_description     = "${var.prefix} vswitch_az_a2"
-  vswitch_availability_zone = "ap-northeast-1a"
+  vswitch_availability_zone = "us-west-1a"
 }
 
 module "vswitch_az_b" {
@@ -46,8 +35,8 @@ module "vswitch_az_b" {
   vpc_id = "${module.vpc.vpc_id}"
   prefix = "${var.prefix}"
 
-  vswitch_cidr_block      = "192.168.2.0/24"
-  vswitch_name            = "${var.prefix}_${terraform.workspace}_vswitch_az_b"
+  vswitch_cidr_block      = "192.168.3.0/24"
+  vswitch_name            = "${var.prefix}_${terraform.workspace}_vswitch_az_a2"
   vswitch_description     = "${var.prefix} vswitch_az_b"
-  vswitch_availability_zone = "ap-northeast-1b"
+  vswitch_availability_zone = "us-west-1b"
 }
