@@ -1,6 +1,5 @@
 variable "access_key" {}
 variable "secret_key" {}
-variable "region" {}
 variable "prefix" {}
 variable "ssh_key" {}
 
@@ -8,7 +7,7 @@ variable "ssh_key" {}
 provider "alicloud" {
   access_key = "${var.access_key}"
   secret_key = "${var.secret_key}"
-  region     = "${var.region}"
+  region     = "us-west-1"
 }
 
 module "vpc" {
@@ -27,7 +26,7 @@ module "vswitch_az_a" {
   vswitch_cidr_block      = "192.168.1.0/24"
   vswitch_name            = "${var.prefix}_${terraform.workspace}_vswitch_az_a"
   vswitch_description     = "${var.prefix} vswitch_az_a"
-  vswitch_availability_zone = "ap-northeast-1a"
+  vswitch_availability_zone = "us-west-1a"
 }
 
 module "vswitch_az_b" {
@@ -36,9 +35,9 @@ module "vswitch_az_b" {
   prefix = "${var.prefix}"
 
   vswitch_cidr_block      = "192.168.3.0/24"
-  vswitch_name            = "${var.prefix}_${terraform.workspace}_vswitch_az_a2"
+  vswitch_name            = "${var.prefix}_${terraform.workspace}_vswitch_az_b"
   vswitch_description     = "${var.prefix} vswitch_az_b"
-  vswitch_availability_zone = "ap-northeast-1b"
+  vswitch_availability_zone = "us-west-1b"
 }
 
 module "security_group" {
@@ -57,5 +56,16 @@ module "security_group_rule_ssh" {
   nic_type          = "intranet"
   policy            = "accept"
   port_range        = "22/22"
+  cidr_ip           = "0.0.0.0/0"
+}
+
+module "security_group_rule_http" {
+  source            = "../modules/security_group_rule"
+  security_group_id = "${module.security_group.security_group_id}"
+  type              = "ingress"
+  ip_protocol       = "tcp"
+  nic_type          = "intranet"
+  policy            = "accept"
+  port_range        = "80/80"
   cidr_ip           = "0.0.0.0/0"
 }
