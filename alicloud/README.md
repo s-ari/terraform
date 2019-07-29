@@ -12,7 +12,6 @@
 ```
 export TF_VAR_access_key=""
 export TF_VAR_secret_key=""
-export TF_VAR_region=""
 export TF_VAR_ssh_key=""
 export TF_VAR_prefix=""
 ```
