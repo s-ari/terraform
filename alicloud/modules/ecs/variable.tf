@@ -1,7 +1,3 @@
-variable "prefix" {
-  default = ""
-}
-
 variable "vswitch_id" {
   default = ""
 }

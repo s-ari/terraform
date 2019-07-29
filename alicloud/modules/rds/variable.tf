@@ -1,7 +1,3 @@
-variable "prefix" {
-  default = ""
-}
-
 variable "instance_name" {
   default = ""
 }
