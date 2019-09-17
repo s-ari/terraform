@@ -45,3 +45,7 @@ variable "internet_max_bandwidth_out" {
 variable "count" {
   default = ""
 }
+
+variable "user_data" {
+  default = ""
+}

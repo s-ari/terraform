@@ -11,4 +11,5 @@ resource "alicloud_instance" "ecs" {
   vswitch_id                 = "${var.vswitch_id}"
   key_name                   = "${var.key_name}"
   internet_max_bandwidth_out = "${var.internet_max_bandwidth_out}"
+  user_data                  = "${var.user_data}"
 }
