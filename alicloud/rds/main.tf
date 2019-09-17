@@ -13,7 +13,6 @@ provider "alicloud" {
 
 module "vpc" {
   source      = "../modules/vpc"
-  prefix      = "${var.prefix}"
   name        = "${var.prefix}_${terraform.workspace}_vpc"
   description = "${var.prefix} vpc"
   cidr_block  = "192.168.0.0/16"
@@ -22,7 +21,6 @@ module "vpc" {
 module "vswitch_az_a" {
   source = "../modules/vswitch"
   vpc_id = "${module.vpc.vpc_id}"
-  prefix = "${var.prefix}"
 
   vswitch_cidr_block        = "192.168.1.0/24"
   vswitch_name              = "${var.prefix}_${terraform.workspace}_vswitch_az_a"
@@ -33,7 +31,6 @@ module "vswitch_az_a" {
 module "vswitch_az_b" {
   source = "../modules/vswitch"
   vpc_id = "${module.vpc.vpc_id}"
-  prefix = "${var.prefix}"
 
   vswitch_cidr_block        = "192.168.2.0/24"
   vswitch_name              = "${var.prefix}_${terraform.workspace}_vswitch_az_b"
@@ -52,17 +49,21 @@ module "rds" {
 }
 
 module "security_group" {
-  source               = "../modules/security_group"
-  vpc_id               = "${module.vpc.vpc_id}"
-  prefix               = "${var.prefix}"
-  name                 = "${var.prefix}_${terraform.workspace}_sg"
-  description          = "${var.prefix} security group"
-  rule_ssh_type        = "ingress"
-  rule_ssh_ip_protocol = "tcp"
-  rule_ssh_nic_type    = "intranet"
-  rule_ssh_policy      = "accept"
-  rule_ssh_port_range  = "22/22"
-  rule_ssh_cidr_ip     = "0.0.0.0/0"
+  source      = "../modules/security_group"
+  vpc_id      = "${module.vpc.vpc_id}"
+  name        = "${var.prefix}_${terraform.workspace}_sg"
+  description = "${var.prefix} security group"
+}
+
+module "security_group_rule_ssh" {
+  source            = "../modules/security_group_rule"
+  security_group_id = "${module.security_group.security_group_id}"
+  type              = "ingress"
+  ip_protocol       = "tcp"
+  nic_type          = "intranet"
+  policy            = "accept"
+  port_range        = "22/22"
+  cidr_ip           = "0.0.0.0/0"
 }
 
 module "ecs" {

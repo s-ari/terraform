@@ -4,7 +4,6 @@
 
 ### Set parameters
 
-* prefix
 * instance_name
 * engine
 * engine_version

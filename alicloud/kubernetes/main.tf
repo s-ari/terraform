@@ -13,7 +13,6 @@ provider "alicloud" {
 
 module "vpc" {
   source      = "../modules/vpc"
-  prefix      = "${var.prefix}"
   name        = "${var.prefix}_${terraform.workspace}_vpc"
   description = "${var.prefix} vpc"
   cidr_block  = "192.168.0.0/16"
@@ -22,7 +21,6 @@ module "vpc" {
 module "vswitch_az_a" {
   source = "../modules/vswitch"
   vpc_id = "${module.vpc.vpc_id}"
-  prefix = "${var.prefix}"
   vswitch_cidr_block        = "192.168.1.0/24"
   vswitch_name              = "${var.prefix}_${terraform.workspace}_vswitch_az_a"
   vswitch_description       = "${var.prefix} vswitch_az_a"

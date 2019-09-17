@@ -6,7 +6,6 @@
 
 * source              
 * vpc_id              
-* prefix              
 * name                
 * description         
 * type       
